@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #080C14;
+  --color-card: #1A2332;
+  --color-card-light: #111827;
+  --color-cyan: #00D4FF;
+  --color-amber: #F59E0B;
+  --color-teal: #57B9A5;
+  --color-purple: #8B5EA6;
+  --color-text: #FFFFFF;
+  --color-body: #94A3B8;
+  --color-meta: #64748B;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+  --color-border: rgba(0, 212, 255, 0.15);
+  --glass-bg: rgba(26, 35, 50, 0.7);
+  --glass-blur: 12px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-meta) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-meta);
+  border-radius: 3px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Glass card */
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    border-color: rgba(0, 212, 255, 0.35);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.08);
+  }
+
+  .cyan-glow {
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2), inset 0 0 15px rgba(0, 212, 255, 0.05);
+    border-color: rgba(0, 212, 255, 0.4);
+  }
+
+  .pulse-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--color-cyan);
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    pointer-events: none;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200;
+    background: linear-gradient(135deg, var(--color-cyan), #0099CC);
+    color: var(--color-bg);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-body);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-cyan);
+    color: var(--color-cyan);
+  }
+
+  .input-dark {
+    @apply w-full px-4 py-3 rounded-lg text-sm outline-none transition-all duration-200;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .input-dark:focus {
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+  }
+
+  .input-dark::placeholder {
+    color: var(--color-meta);
+  }
+
+  .cyan-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+    opacity: 0.3;
+  }
+}
+
+/* Keyframe for pulse ring */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ECG animation */
+@keyframes ecg-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Number count up */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

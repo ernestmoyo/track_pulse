@@ -1,0 +1,359 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// Organization & Users
+// ============================================================
+
+model Organization {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  type      OrgType  @default(CONSULTANCY)
+  logoUrl   String?  @map("logo_url")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users   User[]
+  clients Client[]
+
+  @@map("organizations")
+}
+
+enum OrgType {
+  CONSULTANCY
+  CLIENT
+}
+
+model User {
+  id             String   @id @default(uuid())
+  email          String   @unique
+  passwordHash   String   @map("password_hash")
+  name           String
+  role           Role     @default(CLIENT_VIEWER)
+  avatarUrl      String?  @map("avatar_url")
+  organizationId String   @map("organization_id")
+  isActive       Boolean  @default(true) @map("is_active")
+  lastLoginAt    DateTime? @map("last_login_at")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  reports      Report[]
+  auditLogs    AuditLog[]
+
+  @@index([organizationId])
+  @@index([email])
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  ANALYST
+  CLIENT_VIEWER
+}
+
+// ============================================================
+// Clients & Brands
+// ============================================================
+
+model Client {
+  id             String   @id @default(uuid())
+  name           String
+  slug           String   @unique
+  logoUrl        String?  @map("logo_url")
+  primaryColor   String?  @map("primary_color")
+  organizationId String   @map("organization_id")
+  isActive       Boolean  @default(true) @map("is_active")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  brands       Brand[]
+
+  @@index([organizationId])
+  @@map("clients")
+}
+
+model Brand {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  logoUrl   String?  @map("logo_url")
+  clientId  String   @map("client_id")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  client           Client            @relation(fields: [clientId], references: [id])
+  studies          Study[]
+  brandMetrics     BrandMetric[]
+  competitorBrands CompetitorBrand[]
+  reports          Report[]
+
+  @@index([clientId])
+  @@map("brands")
+}
+
+// ============================================================
+// Studies & Waves
+// ============================================================
+
+model Study {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  brandId     String   @map("brand_id")
+  country     String
+  startDate   DateTime @map("start_date")
+  endDate     DateTime? @map("end_date")
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  brand            Brand             @relation(fields: [brandId], references: [id])
+  waves            Wave[]
+  competitorBrands CompetitorBrand[]
+
+  @@index([brandId])
+  @@map("studies")
+}
+
+model Wave {
+  id             String     @id @default(uuid())
+  label          String
+  studyId        String     @map("study_id")
+  period         String
+  status         WaveStatus @default(PLANNED)
+  fieldworkStart DateTime   @map("fieldwork_start")
+  fieldworkEnd   DateTime   @map("fieldwork_end")
+  targetN        Int        @map("target_n")
+  actualN        Int        @default(0) @map("actual_n")
+  notes          String?
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
+
+  study        Study         @relation(fields: [studyId], references: [id])
+  survey       Survey?
+  respondents  Respondent[]
+  brandMetrics BrandMetric[]
+  reports      Report[]      @relation("ReportWaves")
+
+  @@index([studyId])
+  @@index([status])
+  @@map("waves")
+}
+
+enum WaveStatus {
+  PLANNED
+  FIELDWORK
+  PROCESSING
+  PUBLISHED
+}
+
+// ============================================================
+// Competitors
+// ============================================================
+
+model CompetitorBrand {
+  id        String   @id @default(uuid())
+  name      String
+  studyId   String   @map("study_id")
+  brandId   String?  @map("brand_id")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  study        Study         @relation(fields: [studyId], references: [id])
+  brand        Brand?        @relation(fields: [brandId], references: [id])
+  brandMetrics BrandMetric[]
+
+  @@index([studyId])
+  @@map("competitor_brands")
+}
+
+// ============================================================
+// Survey & Questions
+// ============================================================
+
+model Survey {
+  id        String   @id @default(uuid())
+  waveId    String   @unique @map("wave_id")
+  title     String
+  version   Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  wave      Wave       @relation(fields: [waveId], references: [id])
+  questions Question[]
+
+  @@map("surveys")
+}
+
+model Question {
+  id         String       @id @default(uuid())
+  surveyId   String       @map("survey_id")
+  text       String
+  type       QuestionType
+  orderNum   Int          @map("order_num")
+  isRequired Boolean      @default(true) @map("is_required")
+  createdAt  DateTime     @default(now()) @map("created_at")
+
+  survey    Survey           @relation(fields: [surveyId], references: [id])
+  options   QuestionOption[]
+  responses Response[]
+
+  @@index([surveyId])
+  @@map("questions")
+}
+
+enum QuestionType {
+  SINGLE_CHOICE
+  MULTI_CHOICE
+  SCALE
+  OPEN_TEXT
+  RANKING
+}
+
+model QuestionOption {
+  id         String   @id @default(uuid())
+  questionId String   @map("question_id")
+  text       String
+  value      String
+  orderNum   Int      @map("order_num")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  question  Question   @relation(fields: [questionId], references: [id])
+  responses Response[]
+
+  @@index([questionId])
+  @@map("question_options")
+}
+
+// ============================================================
+// Respondents & Responses
+// ============================================================
+
+model Respondent {
+  id           String   @id @default(uuid())
+  waveId       String   @map("wave_id")
+  externalId   String?  @map("external_id")
+  sex          String?
+  ageGroup     String?  @map("age_group")
+  sec          String?
+  district     String?
+  completedAt  DateTime? @map("completed_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  wave      Wave       @relation(fields: [waveId], references: [id])
+  responses Response[]
+
+  @@index([waveId])
+  @@index([sex, ageGroup, sec, district])
+  @@map("respondents")
+}
+
+model Response {
+  id           String   @id @default(uuid())
+  respondentId String   @map("respondent_id")
+  questionId   String   @map("question_id")
+  optionId     String?  @map("option_id")
+  textValue    String?  @map("text_value")
+  numericValue Float?   @map("numeric_value")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  respondent Respondent      @relation(fields: [respondentId], references: [id])
+  question   Question        @relation(fields: [questionId], references: [id])
+  option     QuestionOption? @relation(fields: [optionId], references: [id])
+
+  @@index([respondentId])
+  @@index([questionId])
+  @@map("responses")
+}
+
+// ============================================================
+// Aggregated Metrics
+// ============================================================
+
+model BrandMetric {
+  id                String   @id @default(uuid())
+  brandId           String   @map("brand_id")
+  competitorBrandId String?  @map("competitor_brand_id")
+  waveId            String   @map("wave_id")
+  metric            String
+  value             Float
+  baseSize          Int      @map("base_size")
+  segment           String?
+  segmentValue      String?  @map("segment_value")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  brand           Brand            @relation(fields: [brandId], references: [id])
+  competitorBrand CompetitorBrand? @relation(fields: [competitorBrandId], references: [id])
+  wave            Wave             @relation(fields: [waveId], references: [id])
+
+  @@index([brandId, waveId, metric])
+  @@index([competitorBrandId, waveId, metric])
+  @@index([waveId, metric])
+  @@index([segment, segmentValue])
+  @@map("brand_metrics")
+}
+
+// ============================================================
+// Reports
+// ============================================================
+
+model Report {
+  id          String       @id @default(uuid())
+  brandId     String       @map("brand_id")
+  format      String       @default("pptx")
+  sections    String[]
+  status      ReportStatus @default(PENDING)
+  filePath    String?      @map("file_path")
+  config      Json?
+  createdById String       @map("created_by_id")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  completedAt DateTime?    @map("completed_at")
+
+  brand     Brand  @relation(fields: [brandId], references: [id])
+  createdBy User   @relation(fields: [createdById], references: [id])
+  waves     Wave[] @relation("ReportWaves")
+
+  @@index([brandId])
+  @@index([status])
+  @@map("reports")
+}
+
+enum ReportStatus {
+  PENDING
+  GENERATING
+  COMPLETED
+  FAILED
+}
+
+// ============================================================
+// Audit Log
+// ============================================================
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  action     String
+  resource   String
+  resourceId String   @map("resource_id")
+  details    String?
+  ipAddress  String?  @map("ip_address")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([resource, resourceId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}

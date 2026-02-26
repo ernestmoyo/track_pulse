@@ -1,0 +1,33 @@
+{
+  "name": "trackpulse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TrackPulse — Brand Health Intelligence Platform by TrackField Projects",
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "dev:web": "pnpm --filter @trackpulse/web dev",
+    "dev:api": "pnpm --filter @trackpulse/api dev",
+    "build": "pnpm --parallel -r run build",
+    "build:web": "pnpm --filter @trackpulse/web build",
+    "build:api": "pnpm --filter @trackpulse/api build",
+    "lint": "pnpm --parallel -r run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,json,css,md}\"",
+    "db:migrate": "pnpm --filter @trackpulse/api prisma:migrate",
+    "db:seed": "pnpm --filter @trackpulse/api prisma:seed",
+    "db:generate": "pnpm --filter @trackpulse/api prisma:generate",
+    "db:studio": "pnpm --filter @trackpulse/api prisma:studio"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "bcrypt",
+      "esbuild",
+      "prisma"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+tmp/
+coverage/
+.turbo/
+
+# Reference files (large)
+*.pptx
+*.pdf
+!README.pdf
+
+# Build prompts
+TrackPulse_ClaudeCode_Prompt.md
+.claude/
