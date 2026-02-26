@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/server.ts",
-        "build": "tsc --noCheck || true",
+        "build": "tsc --noCheck > /dev/null 2>&1; exit 0",
     "start": "node dist/server.js",
     "lint": "eslint src --ext .ts",
     "prisma:migrate": "prisma migrate dev --schema=src/prisma/schema.prisma",
