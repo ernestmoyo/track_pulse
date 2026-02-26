@@ -1,17 +1,18 @@
 {
-    "extends": "../../tsconfig.base.json",
-    "compilerOptions": {
-          "outDir": "./dist",
-          "rootDir": "./src",
-          "module": "CommonJS",
-          "moduleResolution": "node",
-          "target": "ES2022",
-          "types": ["node"],
-          "noEmit": false,
-          "strict": false,
-          "noUnusedLocals": false,
-          "noUnusedParameters": false
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
+      "extends": "../../tsconfig.base.json",
+      "compilerOptions": {
+              "outDir": "./dist",
+              "rootDir": "./src",
+              "module": "CommonJS",
+              "moduleResolution": "node",
+              "target": "ES2022",
+              "types": ["node"],
+              "noEmit": false,
+              "strict": false,
+              "noUnusedLocals": false,
+              "noUnusedParameters": false,
+              "noEmitOnError": false
+      },
+      "include": ["src"],
+      "exclude": ["node_modules", "dist"]
 }
