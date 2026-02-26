@@ -59,7 +59,7 @@ clientRouter.get('/:id', async (req: Request, res: Response, next: NextFunction)
         organization: { select: { name: true } },
       },
     });
-    if (!client) throw new NotFoundError('Client', req.params.id);
+    if (!client) throw new NotFoundError('Client', req.params.id as string);
     res.json({ success: true, data: client });
   } catch (error) {
     next(error);
