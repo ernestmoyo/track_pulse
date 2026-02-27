@@ -4,7 +4,7 @@ import * as path from 'path';
 import { prisma } from '../server';
 import { testSignificance } from './significance.service';
 
-const REPORT_DIR = process.env.REPORT_DIR || './tmp/reports';
+const REPORT_DIR = process.env.VERCEL === '1' ? '/tmp/reports' : (process.env.REPORT_DIR || './tmp/reports');
 
 // TrackPulse brand colors
 const COLORS = {

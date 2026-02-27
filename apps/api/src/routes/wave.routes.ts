@@ -12,9 +12,13 @@ import fs from 'fs';
 export const waveRouter = Router();
 waveRouter.use(authenticate);
 
-const uploadDir = process.env.UPLOAD_DIR || './tmp/uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+const uploadDir = process.env.VERCEL === '1' ? '/tmp/uploads' : (process.env.UPLOAD_DIR || './tmp/uploads');
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+} catch {
+  // Silently continue — directory creation may fail in some serverless environments
 }
 
 const upload = multer({
