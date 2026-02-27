@@ -86,6 +86,7 @@ brandRouter.get('/:id/metrics', async (req: Request, res: Response, next: NextFu
           waveId: compareWave as string,
           segment: null,
         },
+        include: { wave: { select: { label: true, period: true } } },
       });
     }
 
