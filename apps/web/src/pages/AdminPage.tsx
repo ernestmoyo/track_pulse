@@ -4,20 +4,20 @@ import { motion } from 'framer-motion';
 const ADMIN_TABS = ['Clients', 'Brands', 'Users', 'Studies', 'System', 'Audit Log'];
 
 const demoUsers = [
-  { id: '1', name: 'Admin User', email: 'admin@trackfield.com', role: 'ADMIN', org: 'TrackField Projects', lastLogin: '2024-06-28 14:30', active: true },
-  { id: '2', name: 'Analyst User', email: 'analyst@trackfield.com', role: 'ANALYST', org: 'TrackField Projects', lastLogin: '2024-06-27 09:15', active: true },
-  { id: '3', name: 'Panagora Client', email: 'panagora@client.mu', role: 'CLIENT_VIEWER', org: 'Panagora Marketing', lastLogin: '2024-06-25 16:42', active: true },
+  { id: '1', name: 'Samundombe Ilalio', email: 'sam@trackfield.com', role: 'ADMIN', org: 'TrackField Projects', lastLogin: '2024-06-28 14:30', active: true },
+  { id: '2', name: 'Sarah Chen', email: 'analyst@trackfield.com', role: 'ANALYST', org: 'TrackField Projects', lastLogin: '2024-06-27 09:15', active: true },
+  { id: '3', name: 'Thabo Nkosi', email: 'tigerbrands@client.za', role: 'CLIENT_VIEWER', org: 'Tiger Brands', lastLogin: '2024-06-25 16:42', active: true },
 ];
 
 const demoClients = [
-  { id: '1', name: 'Panagora Marketing', brands: 1, studies: 1, active: true },
+  { id: '1', name: 'Tiger Brands', brands: 1, studies: 1, active: true },
 ];
 
 const auditLog = [
   { id: '1', user: 'Admin User', action: 'Viewed Dashboard', resource: 'Dashboard', time: '14:30:22' },
   { id: '2', user: 'Analyst User', action: 'Generated Report', resource: 'Report Q2-2024', time: '09:15:44' },
   { id: '3', user: 'Admin User', action: 'Updated Wave Status', resource: 'Q2-2024', time: '08:52:11' },
-  { id: '4', user: 'Panagora Client', action: 'Downloaded Report', resource: 'Report Q1-2024', time: '16:42:33' },
+  { id: '4', user: 'Thabo Nkosi', action: 'Downloaded Report', resource: 'Report Q1-2024', time: '16:42:33' },
 ];
 
 export default function AdminPage() {

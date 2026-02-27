@@ -10,25 +10,25 @@ const frequencyData = [
 ];
 
 const productTypeData = [
-  { name: 'Fresh', value: 42.3, color: '#00D4FF' },
-  { name: 'Frozen', value: 35.8, color: '#F59E0B' },
-  { name: 'Processed', value: 21.9, color: '#8B5EA6' },
+  { name: 'Hot Cereal', value: 42.3, color: '#00D4FF' },
+  { name: 'Cold Cereal', value: 35.8, color: '#F59E0B' },
+  { name: 'Muesli/Granola', value: 21.9, color: '#8B5EA6' },
 ];
 
 const purchasePlaceData = [
   { place: 'Supermarket', pct: 45.2 },
-  { place: 'Butcher', pct: 22.5 },
-  { place: 'Open Market', pct: 18.3 },
-  { place: 'Mini-market', pct: 10.5 },
+  { place: 'Wholesaler', pct: 22.5 },
+  { place: 'Spaza Shop', pct: 18.3 },
+  { place: 'Convenience', pct: 10.5 },
   { place: 'Online', pct: 3.5 },
 ];
 
 const volumeData = [
-  { tier: '<500g', pct: 15.2 },
-  { tier: '500g-1kg', pct: 38.5 },
-  { tier: '1-2kg', pct: 28.3 },
-  { tier: '2-5kg', pct: 12.8 },
-  { tier: '5kg+', pct: 5.2 },
+  { tier: '<250g', pct: 10.2 },
+  { tier: '250-500g', pct: 32.5 },
+  { tier: '500g-1kg', pct: 35.8 },
+  { tier: '1-2kg', pct: 16.3 },
+  { tier: '2kg+', pct: 5.2 },
 ];
 
 export default function ConsumptionTab() {

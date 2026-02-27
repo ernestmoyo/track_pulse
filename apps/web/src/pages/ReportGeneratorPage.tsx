@@ -59,7 +59,7 @@ export default function ReportGeneratorPage() {
           <div>
             <label className="text-xs text-pulse-meta font-mono block mb-1.5">Brand</label>
             <select className="input-dark text-sm">
-              <option>Chantecler</option>
+              <option>Jungle Oats</option>
             </select>
           </div>
 
@@ -161,10 +161,10 @@ export default function ReportGeneratorPage() {
 
               {activeSlide === 0 ? (
                 <div className="flex-1 flex flex-col justify-center">
-                  <h2 className="text-3xl font-display text-white mb-2">CHANTECLER</h2>
+                  <h2 className="text-3xl font-display text-white mb-2">JUNGLE OATS</h2>
                   <p className="text-lg text-pulse-cyan">Brand Health Tracking Report</p>
                   <p className="text-sm text-pulse-body mt-2">Q2-2024</p>
-                  <p className="text-xs text-pulse-meta mt-4">Prepared for Panagora Marketing</p>
+                  <p className="text-xs text-pulse-meta mt-4">Prepared for Tiger Brands</p>
                 </div>
               ) : (
                 <div className="flex-1">

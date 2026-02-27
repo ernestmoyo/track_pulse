@@ -29,10 +29,10 @@ export default function ClientPortalPage() {
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-[rgba(225,29,72,0.2)] flex items-center justify-center text-xs font-bold text-[#E11D48]">P</div>
-          <h1 className="text-2xl font-display text-white">Panagora Marketing Portal</h1>
+          <div className="w-8 h-8 rounded-lg bg-[rgba(225,29,72,0.2)] flex items-center justify-center text-xs font-bold text-[#E11D48]">T</div>
+          <h1 className="text-2xl font-display text-white">Tiger Brands Portal</h1>
         </div>
-        <p className="text-sm text-pulse-meta">Chantecler Brand Health Overview — Published waves only</p>
+        <p className="text-sm text-pulse-meta">Jungle Oats Brand Health Overview — Published waves only</p>
       </motion.div>
 
       <div className="cyan-line" />

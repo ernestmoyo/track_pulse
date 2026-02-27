@@ -25,7 +25,7 @@ export default function BrandTrackerPage() {
         animate={{ opacity: 1, y: 0 }}
       >
         <h1 className="text-2xl font-display text-white">Brand Tracker</h1>
-        <p className="text-sm text-pulse-meta mt-1">Chantecler — Deep Dive Analysis</p>
+        <p className="text-sm text-pulse-meta mt-1">Jungle Oats — Deep Dive Analysis</p>
       </motion.div>
 
       <div className="cyan-line" />

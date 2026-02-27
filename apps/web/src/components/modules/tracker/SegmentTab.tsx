@@ -5,8 +5,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 const SEGMENT_OPTIONS = {
   sex: ['All', 'Male', 'Female'],
   ageGroup: ['All', '18-24', '25-34', '35-44', '45-54', '55+'],
-  sec: ['All', 'A', 'B', 'C1', 'C2', 'D'],
-  district: ['All', 'Port Louis', 'Pamplemousses', 'Plaines Wilhems', 'Flacq', 'Grand Port', 'Moka'],
+  lsm: ['All', 'LSM 8-10', 'LSM 7', 'LSM 5-6', 'LSM 4', 'LSM 1-3'],
+  province: ['All', 'Gauteng', 'Western Cape', 'KwaZulu-Natal', 'Eastern Cape', 'Free State', 'Limpopo'],
 };
 
 const generateSegmentData = (filters: Record<string, string>) => {
@@ -36,8 +36,8 @@ export default function SegmentTab() {
   const [filters, setFilters] = useState<Record<string, string>>({
     sex: 'All',
     ageGroup: 'All',
-    sec: 'All',
-    district: 'All',
+    lsm: 'All',
+    province: 'All',
   });
 
   const data = generateSegmentData(filters);
@@ -68,7 +68,7 @@ export default function SegmentTab() {
           {Object.entries(SEGMENT_OPTIONS).map(([key, options]) => (
             <div key={key}>
               <label className="block text-xs text-pulse-meta mb-1.5 capitalize font-mono">
-                {key === 'ageGroup' ? 'Age Group' : key === 'sec' ? 'SEC' : key}
+                {key === 'ageGroup' ? 'Age Group' : key === 'lsm' ? 'LSM' : key}
               </label>
               <select
                 value={filters[key]}
@@ -99,7 +99,7 @@ export default function SegmentTab() {
               </span>
             ))}
             <button
-              onClick={() => setFilters({ sex: 'All', ageGroup: 'All', sec: 'All', district: 'All' })}
+              onClick={() => setFilters({ sex: 'All', ageGroup: 'All', lsm: 'All', province: 'All' })}
               className="text-xs text-pulse-meta hover:text-pulse-cyan transition-colors"
             >
               Clear all

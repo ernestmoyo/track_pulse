@@ -106,7 +106,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input-dark"
-              placeholder="admin@trackfield.com"
+              placeholder="sam@trackfield.com"
               required
             />
           </div>
@@ -145,7 +145,7 @@ export default function LoginPage() {
         {/* Demo credentials hint */}
         <div className="mt-6 p-3 rounded-lg bg-[rgba(0,212,255,0.05)] border border-[rgba(0,212,255,0.1)]">
           <p className="text-xs text-pulse-meta font-mono">
-            Demo: admin@trackfield.com / TrackField@2024
+            Demo: sam@trackfield.com / TrackField@2024
           </p>
         </div>
       </motion.form>

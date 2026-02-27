@@ -39,9 +39,9 @@ pnpm dev
 
 | Email | Password | Role |
 |---|---|---|
-| admin@trackfield.com | TrackField@2024 | ADMIN |
+| sam@trackfield.com | TrackField@2024 | ADMIN |
 | analyst@trackfield.com | Analyst@2024 | ANALYST |
-| panagora@client.mu | Client@2024 | CLIENT_VIEWER |
+| tigerbrands@client.za | Client@2024 | CLIENT_VIEWER |
 
 ## Tech Stack
 

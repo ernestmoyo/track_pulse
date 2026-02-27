@@ -11,11 +11,11 @@ interface BrandBubble {
 }
 
 const brands: BrandBubble[] = [
-  { name: 'Chantecler', pricePerception: 3.2, qualityPerception: 4.1, consumptionShare: 49.3, color: '#00D4FF', isMain: true },
-  { name: 'Avipro', pricePerception: 3.5, qualityPerception: 3.5, consumptionShare: 28.3, color: '#F59E0B', isMain: false },
-  { name: 'Chantefrais', pricePerception: 3.8, qualityPerception: 3.1, consumptionShare: 17.2, color: '#8B5EA6', isMain: false },
-  { name: 'Label 60', pricePerception: 4.2, qualityPerception: 2.9, consumptionShare: 11.8, color: '#57B9A5', isMain: false },
-  { name: 'Marilyn', pricePerception: 3.6, qualityPerception: 3.3, consumptionShare: 10.2, color: '#EF4444', isMain: false },
+  { name: 'Jungle Oats', pricePerception: 3.2, qualityPerception: 4.1, consumptionShare: 49.3, color: '#00D4FF', isMain: true },
+  { name: 'Weet-Bix', pricePerception: 3.5, qualityPerception: 3.5, consumptionShare: 28.3, color: '#F59E0B', isMain: false },
+  { name: "Kellogg's", pricePerception: 3.8, qualityPerception: 3.1, consumptionShare: 17.2, color: '#8B5EA6', isMain: false },
+  { name: 'ProNutro', pricePerception: 4.2, qualityPerception: 2.9, consumptionShare: 11.8, color: '#57B9A5', isMain: false },
+  { name: 'Future Life', pricePerception: 3.6, qualityPerception: 3.3, consumptionShare: 10.2, color: '#EF4444', isMain: false },
 ];
 
 export default function PositioningTab() {

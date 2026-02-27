@@ -25,33 +25,33 @@ const trendData = [
 ];
 
 const radarData = [
-  { metric: 'Awareness', Chantecler: 46.5, Avipro: 18.3, Chantefrais: 11.2, Marilyn: 5.9 },
-  { metric: 'Consumption', Chantecler: 49.3, Avipro: 28.3, Chantefrais: 17.2, Marilyn: 10.2 },
-  { metric: 'Ad Recall', Chantecler: 43.5, Avipro: 22.5, Chantefrais: 14.2, Marilyn: 10.5 },
-  { metric: 'Quality', Chantecler: 82, Avipro: 70, Chantefrais: 62, Marilyn: 66 },
-  { metric: 'Value', Chantecler: 76, Avipro: 66, Chantefrais: 69, Marilyn: 72 },
+  { metric: 'Awareness', 'Jungle Oats': 46.5, 'Weet-Bix': 18.3, "Kellogg's": 11.2, 'Future Life': 5.9 },
+  { metric: 'Consumption', 'Jungle Oats': 49.3, 'Weet-Bix': 28.3, "Kellogg's": 17.2, 'Future Life': 10.2 },
+  { metric: 'Ad Recall', 'Jungle Oats': 43.5, 'Weet-Bix': 22.5, "Kellogg's": 14.2, 'Future Life': 10.5 },
+  { metric: 'Quality', 'Jungle Oats': 82, 'Weet-Bix': 70, "Kellogg's": 62, 'Future Life': 66 },
+  { metric: 'Value', 'Jungle Oats': 76, 'Weet-Bix': 66, "Kellogg's": 69, 'Future Life': 72 },
 ];
 
 const radarBrands = [
-  { name: 'Chantecler', color: '#00D4FF', isMain: true },
-  { name: 'Avipro', color: '#F59E0B', isMain: false },
-  { name: 'Chantefrais', color: '#8B5EA6', isMain: false },
-  { name: 'Marilyn', color: '#57B9A5', isMain: false },
+  { name: 'Jungle Oats', color: '#00D4FF', isMain: true },
+  { name: 'Weet-Bix', color: '#F59E0B', isMain: false },
+  { name: "Kellogg's", color: '#8B5EA6', isMain: false },
+  { name: 'Future Life', color: '#57B9A5', isMain: false },
 ];
 
 const sovData = [
-  { name: 'Chantecler', value: 36.2 },
-  { name: 'Avipro', value: 24.5 },
-  { name: 'Chantefrais', value: 19.1 },
-  { name: 'Label 60', value: 12.1 },
-  { name: 'Marilyn', value: 8.1 },
+  { name: 'Jungle Oats', value: 36.2 },
+  { name: 'Weet-Bix', value: 24.5 },
+  { name: "Kellogg's", value: 19.1 },
+  { name: 'ProNutro', value: 12.1 },
+  { name: 'Future Life', value: 8.1 },
 ];
 
 const alertsData = [
-  { id: '1', type: 'positive' as const, message: 'Chantecler TOM awareness reached highest ever at 46.5%, up +1.7pp from Q1-2024', timestamp: 'Q2-2024' },
+  { id: '1', type: 'positive' as const, message: 'Jungle Oats TOM awareness reached highest ever at 46.5%, up +1.7pp from Q1-2024', timestamp: 'Q2-2024' },
   { id: '2', type: 'positive' as const, message: '30-day consumption broke 49% for the first time, driven by 25-34 age segment', timestamp: 'Q2-2024' },
-  { id: '3', type: 'warning' as const, message: 'Marilyn ad awareness surged +1.3pp — monitor competitive threat in digital channel', timestamp: 'Q2-2024' },
-  { id: '4', type: 'warning' as const, message: 'C2D segment consumption dropped 4.2pp for frozen chicken category', timestamp: 'Q2-2024' },
+  { id: '3', type: 'warning' as const, message: 'Future Life ad awareness surged +1.3pp — monitor competitive threat in digital channel', timestamp: 'Q2-2024' },
+  { id: '4', type: 'warning' as const, message: 'LSM 4-6 segment consumption dropped 4.2pp for hot cereal category', timestamp: 'Q2-2024' },
   { id: '5', type: 'neutral' as const, message: 'Wave response rate met target: n=508 against n=500 quota', timestamp: 'Q2-2024' },
 ];
 
@@ -66,7 +66,7 @@ export default function DashboardPage() {
       >
         <div>
           <h1 className="text-2xl font-display text-white">Command Center</h1>
-          <p className="text-sm text-pulse-meta mt-1">Chantecler Brand Health — Q2 2024</p>
+          <p className="text-sm text-pulse-meta mt-1">Jungle Oats Brand Health — Q2 2024</p>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-xs text-pulse-meta font-mono px-3 py-1.5 glass-card">

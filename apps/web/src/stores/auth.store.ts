@@ -5,12 +5,12 @@ import { api } from '@/services/api';
 
 // Demo users for offline/frontend-only mode
 const DEMO_USERS: Record<string, { password: string; profile: UserProfile }> = {
-  'admin@trackfield.com': {
+  'sam@trackfield.com': {
     password: 'TrackField@2024',
     profile: {
       id: 'demo-admin-001',
-      email: 'admin@trackfield.com',
-      name: 'Admin User',
+      email: 'sam@trackfield.com',
+      name: 'Samundombe Ilalio',
       role: 'ADMIN',
       organizationId: 'org-trackfield',
       organizationName: 'TrackField Projects',
@@ -27,15 +27,15 @@ const DEMO_USERS: Record<string, { password: string; profile: UserProfile }> = {
       organizationName: 'TrackField Projects',
     },
   },
-  'panagora@client.mu': {
+  'tigerbrands@client.za': {
     password: 'Client@2024',
     profile: {
       id: 'demo-client-001',
-      email: 'panagora@client.mu',
-      name: 'Jean-Marc Roussety',
+      email: 'tigerbrands@client.za',
+      name: 'Thabo Nkosi',
       role: 'CLIENT_VIEWER',
-      organizationId: 'org-panagora',
-      organizationName: 'Panagora Marketing',
+      organizationId: 'org-tigerbrands',
+      organizationName: 'Tiger Brands',
     },
   },
 };

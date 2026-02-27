@@ -40,7 +40,7 @@ export default function WaveManagementPage() {
       <motion.div className="flex items-center justify-between" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <div>
           <h1 className="text-2xl font-display text-white">Wave Management</h1>
-          <p className="text-sm text-pulse-meta mt-1">Mauritius Poultry Brand Tracker 2023-2024</p>
+          <p className="text-sm text-pulse-meta mt-1">South Africa Cereal Brand Tracker 2023-2024</p>
         </div>
         <button onClick={() => { setShowWizard(true); setWizardStep(1); }} className="btn-primary flex items-center gap-2">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
